@@ -1,16 +1,12 @@
 
--------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
 
-Date: 11/23/2013
-Author: Vijaya Anand, www.prideparrot.com
-Copyright (C) 2013, All Rights Reserved.
-
--------------------------------------------------------------------------------------------
-
+Date: 10/04/2017
+Author: Sameer Sayani
+---------------------------------------------------------------------------------------------------------------------------------------
 NOTICE:
 =======
 
-You can copy, modify and use the source code privately. You are not allowed to *SELL* the original 
-or modified version of the source code to anybody.
+I took reference from internet to create this project followed by MSDN, Pluralsight & prideparrot.com, modified the code whereever needed and using it in my various projects as a reference for knowledgebase. This code is open to use by anyone.
 
--------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
