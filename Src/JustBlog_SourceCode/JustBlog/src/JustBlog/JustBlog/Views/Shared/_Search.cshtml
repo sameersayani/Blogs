@@ -1,0 +1,11 @@
+﻿
+@using (Html.BeginForm("Search", "Blog", FormMethod.Get, new { id = "search-form" }))
+{
+  <p>
+    @Html.TextBox("s", "", new { style = "width:150px" }) 
+  </p>
+  <p>
+    <input type="submit" value="Search" />
+  </p>
+}
+  

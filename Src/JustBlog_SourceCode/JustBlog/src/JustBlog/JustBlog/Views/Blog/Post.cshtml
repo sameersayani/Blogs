@@ -1,0 +1,82 @@
+﻿@model ObjectRef.Core.Objects.Post
+
+@{
+  ViewBag.Title = Model.Title;
+  ViewBag.Keywords = string.Join(" ", Model.Tags.Select(t => t.Name).ToArray());
+  ViewBag.Description = Model.Meta;
+}
+
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn_read").click(function () {
+            //var v = $("#dvTitle").text();
+            //alert(v);
+            speak($("#dvTitle").text());
+            speak($("#dvBody").text());
+        });
+    });
+
+    // say a message
+    function speak(text, callback) {
+        var u = new SpeechSynthesisUtterance();
+        u.text = text;
+        u.lang = 'en-US';
+
+        u.onend = function () {
+            if (callback) {
+                callback();
+            }
+        };
+        u.close = function () {
+            if (callback) {
+                close();
+            }
+        }
+        u.onerror = function (e) {
+            if (callback) {
+                callback(e);
+            }
+        };
+
+        speechSynthesis.speak(u);
+    }
+</script>
+<div id="content">
+  <div class="post">
+      
+    <div class="post-meta">
+      <div class="row">
+        <div class="post-title" id="dvTitle">
+          <h1>@Html.PostLink(Model)</h1>
+        </div>
+          <div class="post-title" style="vertical-align:central;">
+              <a href="#" id="btn_read" style="text-decoration:none;">
+                  <img src="~/Content/themes/simple/images/_mic.gif" alt="Read Blog" title="Read Blog" />
+              </a>
+          </div>
+        <div class="share-links">
+          @Html.Partial("_AddThis")
+        </div>
+      </div>
+      <div class="row">
+        <div class="post-category">
+          <span>Category:</span>&nbsp;@Html.CategoryLink(Model.Category)
+        </div>
+        <div class="post-tags">
+          <span>Tags:</span>&nbsp;@Helpers.Tags(Html, Model.Tags)
+        </div>
+        <div class="no-of-comments">
+          <a href="@string.Format("{0}#disqus_thread", Model.Href(Url))"></a>
+        </div>
+        <div class="posted-date">
+            @Model.PostedOn.ToConfigLocalTime()
+        </div>
+          </div>
+    </div>
+    <div class="post-body" id="dvBody">
+      @Html.Raw(Model.Description)
+    </div>
+    @Html.Partial("_Disqus")
+  </div>
+</div>
